@@ -11,8 +11,8 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 
  user:User={
-  username:'',
-  password:''
+  ContactNumber:'',
+  Password:''
  }
  loggedIn:any;
  role:any;
