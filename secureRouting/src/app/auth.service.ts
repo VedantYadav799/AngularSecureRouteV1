@@ -9,7 +9,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthService {
 
-  constructor(private httpClient: HttpClient,private jwtHelper:JwtHelperService) { }
+  constructor(private httpClient: HttpClient, private jwtHelper: JwtHelperService) { }
 
   login(user: User): Observable<any> {
     console.log("inside request")
@@ -17,11 +17,11 @@ export class AuthService {
     return this.httpClient.post<User>(url, user);
   }
 
-
   getRoleFromToken(): string {
     const token = localStorage.getItem('jwtToken');
     if (token) {
       const decodedToken: any = this.jwtHelper.decodeToken(token)
+      const role = localStorage.setItem('role', decodedToken.role)
       return decodedToken.role;
     }
     return '';

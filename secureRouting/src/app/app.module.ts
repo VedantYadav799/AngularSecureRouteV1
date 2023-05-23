@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { PrivacyComponent } from './privacy/privacy.component';
@@ -26,7 +25,6 @@ export const routes:Routes=[
       { path: 'privacy', component: PrivacyComponent },
       { path: 'material', component: MaterialComponent },
       { path: 'tasks', component: TasksComponent },
-
     ]
   },
 ]
@@ -48,7 +46,7 @@ export const routes:Routes=[
     FormsModule,
     HttpClientModule,
   ],
-  providers: [AuthService, JwtHelperService,    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }],
+  providers: [AuthService, JwtHelperService,{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
