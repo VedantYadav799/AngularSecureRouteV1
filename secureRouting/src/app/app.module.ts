@@ -12,6 +12,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { MaterialComponent } from './material/material.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 export const routes:Routes=[
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -20,9 +22,11 @@ export const routes:Routes=[
     path: 'home',
     component: HomeComponent,
     children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'contact', component: ContactComponent },
-      { path: 'privacy', component: PrivacyComponent }
+      { path: 'privacy', component: PrivacyComponent },
+      { path: 'material', component: MaterialComponent },
+      { path: 'tasks', component: TasksComponent },
+
     ]
   },
 ]
@@ -33,7 +37,9 @@ export const routes:Routes=[
     HomeComponent,
     PrivacyComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    MaterialComponent,
+    TasksComponent
   ],
   imports: [
     BrowserModule,

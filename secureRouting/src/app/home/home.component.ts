@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -6,18 +7,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  role=localStorage.getItem('role')
+  constructor(private svc:AuthService){}
+role=this.svc.getRoleFromToken();
   statusAdmin:boolean=false;
-  statusUser:boolean=false
+  statusStoreManager:boolean=false
+  statusSupervisor:boolean=false
+  statusStoreWorker:boolean=false
+
   
   
   ngOnInit(): void {
-  
-    if(this.role=="Admin"){
+    console.log("on init")
+    console.log(this.role);
+    if(this.role=="Incharge"){
       this.statusAdmin=true;
     }
-    if(this.role=="User"){
-      this.statusUser=true;
+    if(this.role=="Store Manager"){
+      this.statusStoreManager=true;
+    }
+    if(this.role=="Supervisor"){
+      this.statusSupervisor=true;
+    }
+    if(this.role=="Store Worker"){
+      this.statusStoreWorker  =true;
     }
   }
 }

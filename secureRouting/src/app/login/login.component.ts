@@ -24,6 +24,7 @@ export class LoginComponent {
       this.validUser=true;
     }
       const role = this.svc.getRoleFromToken();
+      console.log("role from token ")
       console.log(role)
       if (role == "Incharge") {
         const InchargeId = this.svc.getInchargeIdFromToken();
