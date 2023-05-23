@@ -15,8 +15,8 @@ import { MaterialComponent } from './material/material.component';
 import { TasksComponent } from './tasks/tasks.component';
 
 export const routes: Routes = [
- { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  // { path: '', redirectTo: '/login', pathMatch: 'full' },
+   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'privacy', component: PrivacyComponent },

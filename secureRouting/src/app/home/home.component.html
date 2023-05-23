@@ -1,6 +1,8 @@
 <p>home works!</p>
-<a *ngIf="status" [routerLink]="['contact']">Contact</a> |
-<a *ngIf="status" [routerLink]="['privacy']">Privacy</a> |
-<a *ngIf="status" [routerLink]="['material']">materials</a> |
-<a *ngIf="status" [routerLink]="['tasks']">tasks</a>
+<div *ngIf="status">
+<a  [routerLink]="['contact']">Contact</a> |
+<a  [routerLink]="['privacy']">Privacy</a> |
+<a  [routerLink]="['material']">materials</a> |
+<a  [routerLink]="['tasks']">tasks</a>
+</div>
 <router-outlet></router-outlet>
