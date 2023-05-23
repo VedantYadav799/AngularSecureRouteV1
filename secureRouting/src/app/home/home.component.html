@@ -1,8 +1,9 @@
-<p>home works!</p>
-<div *ngIf="status">
-<a  [routerLink]="['contact']">Contact</a> |
-<a  [routerLink]="['privacy']">Privacy</a> |
-<a  [routerLink]="['material']">materials</a> |
-<a  [routerLink]="['tasks']">tasks</a>
-</div>
+
+<h3> Welcome {{empFirstName}} {{empLastName}} </h3>
+<a  [routerLink]="['/home']">Home</a> | 
+<a [routerLink]="['/home/contact']">Contact</a> |
+<a  [routerLink]="['/home/privacy']">Privacy</a>|
+<a  [routerLink]="['/home/material']">materials</a>|
+<a  [routerLink]="['/home/tasks']">tasks</a>
+
 <router-outlet></router-outlet>

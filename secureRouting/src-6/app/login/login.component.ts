@@ -9,23 +9,38 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  loggedIn: boolean = false;
+  role: any;
+  status: boolean = false;
+  signinstatus: boolean = false;
+  signout: boolean = false;
   user: User | any = {
     contactNumber: "",
     password: ""
   };
-  validUser: boolean = false;
+
   constructor(private svc: AuthService, private router: Router) { }
 
   logIn() {
     this.svc.login(this.user).subscribe((response) => {
       localStorage.setItem('jwtToken', response.token);
-      localStorage.setItem('employeeId', response.userId)
-      if (this.user) {
-        this.validUser = true;
-      }
+      this.loggedIn = true;
+      this.signout = true;
+     })
+  }
 
-    })
-    this.router.navigate(['/home']);
-    return true;
+  login() {
+    this.status = true;
+    this.signinstatus = true;
+  }
+
+  logout() {
+    this.loggedIn = false;
+    this.signinstatus = false;
+    this.signout = false;
+    this.status = false;
+    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("role");
+    this.router.navigate([''])
   }
 }

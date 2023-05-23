@@ -1,34 +1,10 @@
-<button type="submit" (click)="login()" *ngIf="signinstatus==false">SignIn</button>
-<button type="submit" (click)="logout()" *ngIf="signout==true">SignOut</button>
-<div *ngIf="status">   
-<form (ngSubmit)="logIn()" *ngIf="loggedIn==false">
-  <table>
-    <tr>
-      <td>
-        <label for="username">contactNumber:</label>
-      </td>
-      <td>
-        <input type="text" id="username" name="contactNumber" [(ngModel)]="user.contactNumber" required>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <label for="password">Password:</label>
-      </td>
-      <td>
-        <input type="password" id="password" name="password" [(ngModel)]="user.password" required>
-      </td>
-    </tr>
-    <tr>
-      <td>
-      </td>
-      <td>
-        <button type="submit">Login</button>
-      </td>
-    </tr>
-  </table>
+<form (ngSubmit)="logIn()">
+   <input type="text" id="ContactNumber" name="ContactNumber" [(ngModel)]="user.ContactNumber">
+   <label for="ContactNumber">Contact Number</label>
+   <input type="password" id="password" name="password" [(ngModel)]="user.Password">
+   <label for="password">password</label>
+   <button type="submit">submit</button>
 </form>
-</div>
-<div *ngIf="loggedIn">
-  <app-home></app-home>
+<div *ngIf="validUser">
+    <app-home></app-home>
 </div>

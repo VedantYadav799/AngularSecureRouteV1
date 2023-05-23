@@ -17,34 +17,13 @@ export class AuthService {
     return this.httpClient.post<User>(url, user);
   }
 
-  getRoleFromToken(): string {
-    const token = localStorage.getItem('jwtToken');
-    if (token) {
-      const decodedToken: any = this.jwtHelper.decodeToken(token)
-      const role = localStorage.setItem('role', decodedToken.role)
-      return decodedToken.role;
-    }
-    return '';
+  getEmpById(empid:number):Observable<any>{
+    let url = "http://localhost:5224/api/employees/getemployee/" + empid;
+    return this.httpClient.get(url);
   }
-  getInchargeIdFromToken(): number {
-    const token: any = localStorage.getItem('jwtToken');
-    const decodedToken: any = this.jwtHelper.decodeToken(token)
-    return decodedToken.InchargeId;
-  }
-  getSupervisorFromToken(): number {
-    const token: any = localStorage.getItem('jwtToken');
-    const decodedToken: any = this.jwtHelper.decodeToken(token)
-    return decodedToken.supervisorId;
-  }
-  getStoreManagerFromToken(): number {
-    const token: any = localStorage.getItem('jwtToken');
-    const decodedToken: any = this.jwtHelper.decodeToken(token)
-    return decodedToken.storemanagerId;
-  }
-  getStoreWorkerFromToken(): number {
-    const token: any = localStorage.getItem('jwtToken');
-    const decodedToken: any = this.jwtHelper.decodeToken(token)
-    return decodedToken.storeworkerId;
-  }
+
+
+
+
 
 }
