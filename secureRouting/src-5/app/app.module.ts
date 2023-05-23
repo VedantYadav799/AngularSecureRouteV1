@@ -14,15 +14,19 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { MaterialComponent } from './material/material.component';
 import { TasksComponent } from './tasks/tasks.component';
 
-export const routes: Routes = [
- { path: '', redirectTo: '/login', pathMatch: 'full' },
+export const routes:Routes=[
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'privacy', component: PrivacyComponent },
-  { path: 'material', component: MaterialComponent },
-  { path: 'tasks', component: TasksComponent },
-
+  {
+    path: 'home',
+    component: HomeComponent,
+    children: [
+      { path: 'contact', component: ContactComponent },
+      { path: 'privacy', component: PrivacyComponent },
+      { path: 'material', component: MaterialComponent },
+      { path: 'tasks', component: TasksComponent },
+    ]
+  },
 ]
 @NgModule({
 
@@ -42,7 +46,7 @@ export const routes: Routes = [
     FormsModule,
     HttpClientModule,
   ],
-  providers: [AuthService, JwtHelperService, { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }],
+  providers: [AuthService, JwtHelperService,{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,42 +9,38 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+  loggedIn: boolean = false;
+  role: any;
+  status: boolean = false;
+  signinstatus: boolean = false;
+  signout: boolean = false;
   user: User | any = {
     contactNumber: "",
     password: ""
   };
-  validUser: boolean = false;
+
   constructor(private svc: AuthService, private router: Router) { }
 
   logIn() {
     this.svc.login(this.user).subscribe((response) => {
       localStorage.setItem('jwtToken', response.token);
-      if (this.user) {
-        this.validUser = true;
-      }
-      const role = this.svc.getRoleFromToken();
-      console.log("role from token ")
-      console.log(role);
-      if (role == "Incharge") {
-        const InchargeId = this.svc.getInchargeIdFromToken();
-        console.log(InchargeId);
-      }
-      if (role == "supervisor") {
-        const supervisorId = this.svc.getSupervisorFromToken();
-        console.log(supervisorId);
-        // this.router.navigate(['/login']);
-      }
-      if (role == "store manager") {
-        const storemanagerId = this.svc.getStoreManagerFromToken();
-        console.log(storemanagerId);
-      }
-      if (role == "store worker") {
-        const storeworkerId = this.svc.getStoreWorkerFromToken();
-        console.log(storeworkerId);
-      }
+      this.loggedIn = true;
+      this.signout = true;
+     })
+  }
 
-    })
-    this.router.navigate(['/home']);
-    return true;
+  login() {
+    this.status = true;
+    this.signinstatus = true;
+  }
+
+  logout() {
+    this.loggedIn = false;
+    this.signinstatus = false;
+    this.signout = false;
+    this.status = false;
+    localStorage.removeItem("jwtToken");
+    localStorage.removeItem("role");
+    this.router.navigate([''])
   }
 }
