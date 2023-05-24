@@ -7,23 +7,14 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor(private svc: AuthService) { }
-  empFirstName:string |any
-  empLastName:string |any
-  id:number |any
-  empid = localStorage.getItem('employeeId') || '{}';
-  status:boolean =false;
 
+  token=localStorage.getItem("jwtToken");
+  status:boolean=true;
 
-  async ngOnInit(): Promise<any> {
-    console.log("on init");
-    console.log(this.empid);
-    this.id = parseInt(this.empid);
-     this.svc.getEmpById(this.id).subscribe((Response)=>{
-      this.empFirstName =Response.employeeFirstName;
-      this.empLastName=Response.employeeLastName
-
-    })
-
+  ngOnInit(): void {
+  console.log(this.token)
+    if(this.token ==null){
+      this.status=false;
     }
   }
+}

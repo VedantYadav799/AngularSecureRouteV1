@@ -17,13 +17,15 @@ export class AuthService {
     return this.httpClient.post<User>(url, user);
   }
 
-  getEmpById(empid:number):Observable<any>{
-    let url = "http://localhost:5224/api/employees/getemployee/" + empid;
-    return this.httpClient.get(url);
+  getRoleFromToken(): string {
+    const token = localStorage.getItem('jwtToken');
+    if (token) {
+      const decodedToken: any = this.jwtHelper.decodeToken(token)
+      const role = localStorage.setItem('role', decodedToken.role)
+      return decodedToken.role;
+    }
+    return '';
   }
-
-
-
 
 
 }
