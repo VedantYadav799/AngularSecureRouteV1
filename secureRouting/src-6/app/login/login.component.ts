@@ -29,6 +29,8 @@ export class LoginComponent implements OnInit {
   logIn() {
     this.svc.login(this.user).subscribe((response) => {
       localStorage.setItem('jwtToken', response.token);
+      const decodedRole = this.svc.getRoleFromToken(); //decode role from token which is stored in localstorage
+      localStorage.setItem('role', decodedRole);
       this.validUser = true;
       this.BtnSignIn=false;
       this.BtnSignOut = true;

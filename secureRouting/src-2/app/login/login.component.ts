@@ -10,23 +10,24 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
- user:User={
-  ContactNumber:'',
-  Password:''
- }
- loggedIn:any;
- role:any;
-  constructor(private svc:AuthService, private router:Router){}
+  user: User = {
+    ContactNumber: '',
+    Password: ''
+  }
+  loggedIn: any;
+  role: any;
 
-  logIn(){
-    this.svc.login(this.user).subscribe((res)=>{
+  constructor(private svc: AuthService, private router: Router) { }
+
+  logIn() {
+    this.svc.login(this.user).subscribe((res) => {
       console.log(res.token);
       localStorage.setItem('jwt', res.token);
       console.log(res);
     })
 
 
-  
 
-}
+
+  }
 }
