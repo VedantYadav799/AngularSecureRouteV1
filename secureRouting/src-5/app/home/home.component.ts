@@ -7,9 +7,8 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor(private svc: AuthService) { }
-
-  role = this.svc.getRoleFromToken();
+  
+  role = localStorage.getItem("role")
   statusAdmin: boolean = false;
   statusStoreManager: boolean = false
   statusSupervisor: boolean = false

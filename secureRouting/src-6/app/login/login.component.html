@@ -1,7 +1,7 @@
-<button type="submit" (click)="login()" *ngIf="signinstatus==false">SignIn</button>
-<button type="submit" (click)="logout()" *ngIf="signout==true">SignOut</button>
-<div *ngIf="status">   
-<form (ngSubmit)="logIn()" *ngIf="loggedIn==false">
+<button  (click)="login()" *ngIf="BtnSignIn">SignIn</button>
+<button  (click)="logout()" *ngIf="BtnSignOut">SignOut</button>
+<div *ngIf="loginFormVisible">   
+<form (ngSubmit)="logIn()" >
   <table>
     <tr>
       <td>
@@ -29,6 +29,6 @@
   </table>
 </form>
 </div>
-<div *ngIf="loggedIn">
+<div *ngIf="validUser">
   <app-home></app-home>
 </div>

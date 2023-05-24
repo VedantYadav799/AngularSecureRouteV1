@@ -14,27 +14,32 @@ export class LoginComponent implements OnInit {
   loginFormVisible: boolean = false;
   BtnSignIn: boolean = false;
   BtnSignOut: boolean = false;
-  
   user: User | any = {
     contactNumber: "",
     password: ""
   };
 
   constructor(private svc: AuthService, private router: Router) { }
-  
+
   ngOnInit(): void {
-    this.BtnSignIn =true;
+    this.BtnSignIn = true;
   }
 
   logIn() {
     this.svc.login(this.user).subscribe((response) => {
+      //first save the token in local storage
       localStorage.setItem('jwtToken', response.token);
+      const decodedRole = this.svc.getRoleFromToken(); //decode role from token which is stored in localstorage
+      const decodedEmployeeId = this.svc.getEmployeeIdFromToken();//decode employee id from token which is stored in localstorage
+      localStorage.setItem('role', decodedRole);
+      localStorage.setItem('employeeId', decodedEmployeeId);
       this.validUser = true;
-      this.BtnSignIn=false;
+      this.BtnSignIn = false;
       this.BtnSignOut = true;
-     })
+      this.loginFormVisible = false;
+    })
+
   }
-   
   login() {
     this.loginFormVisible = true;
     this.BtnSignIn = true;
@@ -47,6 +52,7 @@ export class LoginComponent implements OnInit {
     this.loginFormVisible = false;
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("role");
-    this.router.navigate([''])
+    localStorage.removeItem("employeeId");
   }
+
 }

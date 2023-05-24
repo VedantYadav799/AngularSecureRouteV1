@@ -26,25 +26,6 @@ export class AuthService {
     }
     return '';
   }
-  getInchargeIdFromToken(): number {
-    const token: any = localStorage.getItem('jwtToken');
-    const decodedToken: any = this.jwtHelper.decodeToken(token)
-    return decodedToken.InchargeId;
-  }
-  getSupervisorFromToken(): number {
-    const token: any = localStorage.getItem('jwtToken');
-    const decodedToken: any = this.jwtHelper.decodeToken(token)
-    return decodedToken.supervisorId;
-  }
-  getStoreManagerFromToken(): number {
-    const token: any = localStorage.getItem('jwtToken');
-    const decodedToken: any = this.jwtHelper.decodeToken(token)
-    return decodedToken.storemanagerId;
-  }
-  getStoreWorkerFromToken(): number {
-    const token: any = localStorage.getItem('jwtToken');
-    const decodedToken: any = this.jwtHelper.decodeToken(token)
-    return decodedToken.storeworkerId;
-  }
+
 
 }

@@ -1,8 +1,9 @@
-<p>home works!</p>
-<div *ngIf="status">
-<a  [routerLink]="['contact']">Contact</a> |
-<a  [routerLink]="['privacy']">Privacy</a> |
-<a  [routerLink]="['material']">materials</a> |
-<a  [routerLink]="['tasks']">tasks</a>
-</div>
+ 
+<h3> Welcome {{empFirstName}} {{empLastName}} </h3>
+
+<a *ngIf="statusAdmin" [routerLink]="['/contact']">Contact</a> |
+<a *ngIf="statusSupervisor" [routerLink]="['/privacy']">Privacy</a>
+<a *ngIf="statusStoreManager" [routerLink]="['/material']">materials</a>
+<a *ngIf="statusStoreWorker" [routerLink]="['/tasks']">tasks</a>
+
 <router-outlet></router-outlet>

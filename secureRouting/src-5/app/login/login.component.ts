@@ -18,31 +18,11 @@ export class LoginComponent {
 
   logIn() {
     this.svc.login(this.user).subscribe((response) => {
+      
       localStorage.setItem('jwtToken', response.token);
       if (this.user) {
         this.validUser = true;
       }
-      const role = this.svc.getRoleFromToken();
-      console.log("role from token ")
-      console.log(role);
-      if (role == "Incharge") {
-        const InchargeId = this.svc.getInchargeIdFromToken();
-        console.log(InchargeId);
-      }
-      if (role == "supervisor") {
-        const supervisorId = this.svc.getSupervisorFromToken();
-        console.log(supervisorId);
-        // this.router.navigate(['/login']);
-      }
-      if (role == "store manager") {
-        const storemanagerId = this.svc.getStoreManagerFromToken();
-        console.log(storemanagerId);
-      }
-      if (role == "store worker") {
-        const storeworkerId = this.svc.getStoreWorkerFromToken();
-        console.log(storeworkerId);
-      }
-
     })
     this.router.navigate(['/home']);
     return true;

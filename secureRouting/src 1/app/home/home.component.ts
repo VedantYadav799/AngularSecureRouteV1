@@ -8,9 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   role=localStorage.getItem("role");
   statusAdmin:boolean=false;
-  statusUser:boolean=false
-  
-  
+  statusUser:boolean=false;
+   
   ngOnInit(): void {
   
     if(this.role=="Admin"){

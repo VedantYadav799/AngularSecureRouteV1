@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../User';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
@@ -8,37 +8,43 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  loggedIn: boolean = false;
+export class LoginComponent implements OnInit {
+  validUser: boolean = false;
   role: any;
-  status: boolean = false;
-  signinstatus: boolean = false;
-  signout: boolean = false;
+  loginFormVisible: boolean = false;
+  BtnSignIn: boolean = false;
+  BtnSignOut: boolean = false;
+  
   user: User | any = {
     contactNumber: "",
     password: ""
   };
 
   constructor(private svc: AuthService, private router: Router) { }
+  
+  ngOnInit(): void {
+    this.BtnSignIn =true;
+  }
 
   logIn() {
     this.svc.login(this.user).subscribe((response) => {
       localStorage.setItem('jwtToken', response.token);
-      this.loggedIn = true;
-      this.signout = true;
+      this.validUser = true;
+      this.BtnSignIn=false;
+      this.BtnSignOut = true;
      })
   }
-
+   
   login() {
-    this.status = true;
-    this.signinstatus = true;
+    this.loginFormVisible = true;
+    this.BtnSignIn = true;
   }
 
   logout() {
-    this.loggedIn = false;
-    this.signinstatus = false;
-    this.signout = false;
-    this.status = false;
+    this.validUser = false;
+    this.BtnSignIn = true;
+    this.BtnSignOut = false;
+    this.loginFormVisible = false;
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("role");
     this.router.navigate([''])
