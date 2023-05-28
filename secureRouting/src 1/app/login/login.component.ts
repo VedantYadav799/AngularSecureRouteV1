@@ -16,7 +16,7 @@ export class LoginComponent {
  role:any;
   constructor(private svc:AuthService, private router:Router){}
 
-  logIn(){
+  LogIn(){
     if(this.svc.Login(this.username,this.password)){
       console.log("Login button clicked");
       this.loggedIn=true;

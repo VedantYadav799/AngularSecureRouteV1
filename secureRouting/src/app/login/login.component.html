@@ -1,35 +1,30 @@
-<button (click)="login()" *ngIf="BtnSignIn">SignIn</button>
-<button (click)="logout()" *ngIf="BtnSignOut">SignOut</button>
-<div *ngIf="loginFormVisible">
-    <form (ngSubmit)="logIn()">
-        <table>
-            <tr>
-                <td>
-                    <label for="username">contactNumber:</label>
-                </td>
-                <td>
-                    <input type="text" id="username" name="contactNumber" [(ngModel)]="user.contactNumber" required>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label for="password">Password:</label>
-                </td>
-                <td>
-                    <input type="password" id="password" name="password" [(ngModel)]="user.password" required>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>
-                    <button type="submit">Login</button>
-                </td>
-            </tr>
-        </table>
-    </form>
-</div>
+<table class="table">
+    <thead>
+      <tr>
+        <th >#</th>
+        <th *ngFor="let warehouse of warehouses">{{warehouse.section}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th >floor 3</th>
+        <td>Section</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th >floor 2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th>floor 1</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
 
-<div *ngIf="validUser">
-    <app-home></app-home>
-</div>
+ 

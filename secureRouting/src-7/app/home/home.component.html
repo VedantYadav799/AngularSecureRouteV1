@@ -1,0 +1,9 @@
+ 
+<h3> Welcome {{empFirstName}} {{empLastName}} </h3>
+
+<a *ngIf="statusAdmin" [routerLink]="['/contact']">Contact</a> |
+<a *ngIf="statusSupervisor" [routerLink]="['/privacy']">Privacy</a>
+<a *ngIf="statusStoreManager" [routerLink]="['/material']">materials</a>
+<a *ngIf="statusStoreWorker" [routerLink]="['/tasks']">tasks</a>
+
+<router-outlet></router-outlet>

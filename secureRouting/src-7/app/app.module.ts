@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { PrivacyComponent } from './privacy/privacy.component';
@@ -11,19 +10,16 @@ import { AuthService } from './auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { MaterialComponent } from './material/material.component';
+import { TasksComponent } from './tasks/tasks.component';
 
 export const routes:Routes=[
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  {
-    path: 'home',
-    component: HomeComponent,
-    children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'contact', component: ContactComponent },
-      { path: 'privacy', component: PrivacyComponent }
-    ]
-  },
+  {path: 'home', component:HomeComponent},
+  { path: 'contact', component: ContactComponent },
+  { path: 'privacy', component: PrivacyComponent },
+  { path: 'material', component: MaterialComponent },
+  { path: 'tasks', component: TasksComponent },
 ]
 @NgModule({
 
@@ -32,7 +28,9 @@ export const routes:Routes=[
     HomeComponent,
     PrivacyComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    MaterialComponent,
+    TasksComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +39,7 @@ export const routes:Routes=[
     FormsModule,
     HttpClientModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, JwtHelperService,{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

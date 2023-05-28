@@ -1,6 +1,8 @@
 export class User{
     constructor(
-        public ContactNumber:string,
-        public Password:string
+        public userId:number,
+        public role:string,
+        public username:string,
+        public password:string
     ){ }
-} 
+}
